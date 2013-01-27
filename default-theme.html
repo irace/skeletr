@@ -20,18 +20,22 @@
 <body>
 
 <style type="text/css">
-    .permalink {
+    header h1 {
+        font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+    }
+
+    a:link.permalink ,
+    a:hover.permalink ,
+    a:visited.permalink ,
+    a:active.permalink  {
+        text-decoration: none;
+        color: lightgrey;
+        position: absolute;
+        top: 0;
         float: left;
         margin-left: -40px;
         font-size: 30px;
-    }
-
-    .permalink a:link,
-    .permalink a:hover,
-    .permalink a:visited,
-    .permalink a:active {
-        text-decoration: none;
-        color: lightgrey;
+        font-family: 'Helvetica Neue', sans-serif;
     }
 
     a:link, a:visited, a:hover, a:active {
@@ -51,15 +55,15 @@
         width: 10px;
         margin-left: -5px;
         font-size: 50px;
-        opacity: 0.05;
+        opacity: 0.2;
     }
 
     h3 {
         margin-bottom: 20px;
     }
 
-    a.permalink {
-        font-family: 'Helvetica Neue', sans-serif;
+    .post {
+        position: relative;
     }
 
     .post footer {
@@ -110,6 +114,9 @@
 </style>
 
 <div class="container">
+<header>
+    <h1>bryan.io</h1>
+</header>
 
 <ul id="posts">
 <!-- START POSTS -->
@@ -121,7 +128,7 @@
 
     {block:Regular}
         <li class="post regular">
-        {block:Title}<h2>{Title}</h2>{/block:Title}
+        {block:Title}<h3>{Title}</h3>{/block:Title}
         {Body}
     {/block:Regular}
 
@@ -135,7 +142,7 @@
 
     {block:Link}
         <li class="post link">
-            <h2><a href="{URL}" {Target}>{Name}</a></h2>
+            <h3><a href="{URL}" {Target}>{Name}</a></h3>
 
             <div class="link-body">
                 {block:Description}{Description}{/block:Description}
@@ -144,7 +151,7 @@
 
     {block:Conversation}
         <li class="post conversation">
-            {block:Title}<h2>{Title}</h2>{/block:Title}
+            {block:Title}<h3>{Title}</h3>{/block:Title}
             <ul>
                 {block:Lines}
                 <li>
@@ -195,8 +202,6 @@
             {/block:NoteCount}
         {/block:IfShowNotes}
 
-        <a href="{Permalink}" class="permalink">{lang:Permalink} &#8734;</a>
-
         {block:RebloggedFrom}
             <span class="reblog">{lang:Reblogged from ReblogParentName 2}</span>
         {/block:RebloggedFrom}
@@ -210,6 +215,8 @@
         {/block:HasTags}
     </div>
 
+    <a href="{Permalink}" class="permalink">&#8734;</a>
+
     {block:Permalink}
         {block:IfShowNotes}
             {block:PostNotes}
@@ -222,6 +229,8 @@
     {/block:Permalink}
 
     </li>
+
+    <hr/>
 {/block:Posts}
 
 <!-- END POSTS -->
