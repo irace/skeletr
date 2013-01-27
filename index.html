@@ -1,127 +1,225 @@
-<!-- Ctrl-A/E keyboard shortcuts, 2-space indents -->
-
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
-    <title>{Title}</title>
-    <link rel="shortcut icon" href="{Favicon}">
-    <link rel="alternate" type="application/rss+xml" href="{RSS}">
-    {block:Description}
-    <meta name="description" content="{MetaDescription}" />
-    {/block:Description}
+    <meta charset="utf-8">
+    <title>{block:PostSummary}{PostSummary} - {/block:PostSummary} {Title}</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="description" content="{MetaDescription}"/>
+
+    <link rel="shortcut icon" href="{Favicon}"/>
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="{RSS}"/>
+    <link rel="stylesheet" href="http://static.tumblr.com/pki9kmq/Wttmg83dy/skeleton-1.2-base.css"/>
+    <link rel="stylesheet" href="http://static.tumblr.com/pki9kmq/wERmg83e6/skeleton-1.2.css"/>
+
+    <style type="text/css">
+        body {
+            background-color: #151515;
+            color: #EAEAEA;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: #b5e853;
+        }
+
+        body, h1, h2, h3, h4, h5, h6 {
+            font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace !important;
+        }
+
+        header h1 {
+            text-align: center;
+        }
+
+        a:link, a:visited, a:hover, a:active {
+            color: #63c0f5;
+        }
+
+        /* Posts */
+
+        #posts {
+            max-width: 100%;
+            width: 730px;
+            margin: 25px auto auto auto;
+            font-size: 16px;
+        }
+
+        .post {
+            position: relative;
+            margin: 40px 0 20px 0;
+            list-style: none;
+        }
+
+        .post img {
+            display: block;
+            max-width: 100%;
+            margin: auto;
+        }
+
+        .post h3,
+        .post ul,
+        .post ol,
+        .post img {
+            margin-bottom: 20px;
+        }
+
+        .post .words {
+            font-size: x-large;
+        }
+
+        .post-footer {
+            text-align: right;
+        }
+
+        /* Skeleton overrides */
+
+        li, li p {
+            line-height: normal;
+        }
+
+        ul ul, ul ol, ol ol, ol ul {
+            font-size: 100%;
+        }
+
+        blockquote {
+            border-left: 1px solid #777;
+            padding: 0 20px 0 19px;
+        }
+    </style>
 </head>
 
 <body>
 
-<ol id="posts">
-    {block:Posts}
-    {block:Text}
-    <li class="post text">
-        {block:Title}
-        <h3><a href="{Permalink}">{Title}</a></h3>
-        {/block:Title}
+<div class="container">
 
+<header>
+    <h1>bryan.io</h1>
+</header>
+
+<ul id="posts">
+<!-- START POSTS -->
+
+{block:Posts}
+    {block:Regular}
+        <li class="post regular">
+        {block:Title}<h3>{Title}</h3>{/block:Title}
         {Body}
-    </li>
-    {/block:Text}
-
-    {block:Photo}
-    <li class="post photo">
-        <img src="{PhotoURL-500}" alt="{PhotoAlt}"/>
-
-        {block:Caption}
-        <div class="caption">{Caption}</div>
-        {/block:Caption}
-    </li>
-    {/block:Photo}
-
-    {block:Photoset}
-    <li class="post photoset">
-        {Photoset-500}
-
-        {block:Caption}
-        <div class="caption">{Caption}</div>
-        {/block:Caption}
-    </li>
-    {/block:Photoset}
+    {/block:Regular}
 
     {block:Quote}
-    <li class="post quote">
-        "{Quote}"
-
-        {block:Source}
-        <div class="source">{Source}</div>
-        {/block:Source}
-    </li>
+        <li class="post quote">
+            <div class="quote-body">
+                <p class="words">&#0147;{Quote}&#0148;</p>
+                {block:Source}<p class="source">&mdash; {Source}</p>{/block:Source}
+            </div>
     {/block:Quote}
 
     {block:Link}
-    <li class="post link">
-        <a href="{URL}" class="link">{Name}</a>
+        <li class="post link">
+            <h3><a href="{URL}" {Target}>{Name}</a></h3>
 
-        {block:Description}
-        <div class="description">{Description}</div>
-        {/block:Description}
-    </li>
+            <p class="link-body">
+                {block:Description}{Description}{/block:Description}
+            </p>
     {/block:Link}
 
-    {block:Chat}
-    <li class="post chat">
-        {block:Title}
-        <h3><a href="{Permalink}">{Title}</a></h3>
-        {/block:Title}
+    {block:Conversation}
+        <li class="post conversation">
+            {block:Title}<h3>{Title}</h3>{/block:Title}
+            <ul>
+                {block:Lines}
+                <li>
+                    {block:Label}<span class="person">{Label}</span>{/block:Label}
+                    <span class="line">{Line}</span>
+                </li>
+                {/block:Lines}
+            </ul>
+    {/block:Conversation}
 
-        <ul class="chat">
-            {block:Lines}
-            <li class="{Alt} user_{UserNumber}">
-                {block:Label}
-                <span class="label">{Label}</span>
-                {/block:Label}
+    {block:Photo}
+        <li class="post photo">
+            {LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}"/>{LinkCloseTag}
+            {block:Caption}
+                <div class="caption">{Caption}</div>
+            {/block:Caption}
+    {/block:Photo}
 
-                {Line}
-            </li>
-            {/block:Lines}
-        </ul>
-    </li>
-    {/block:Chat}
+    {block:Photoset}
+        <li class="post photoset-post">
+            {Photoset-500}
+            {block:Caption}
+                <div class="caption">{Caption}</div>
+            {/block:Caption}
+    {/block:Photoset}
 
     {block:Video}
-    <li class="post video">
-        {Video-500}
-
-        {block:Caption}
-        <div class="caption">{Caption}</div>
-        {/block:Caption}
-    </li>
+        <li class="post video">
+            {Video-500}
+            {block:Caption}
+                <div class="caption">{Caption}</div>
+            {/block:Caption}
     {/block:Video}
 
     {block:Audio}
-    <li class="post audio">
-        {AudioPlayerBlack}
-
-        {block:Caption}
-        <div class="caption">{Caption}</div>
-        {/block:Caption}
-    </li>
+        <li class="post audio">
+            {AudioPlayerBlack}
+            {block:Caption}
+                <div class="caption">{Caption}</div>
+            {/block:Caption}
     {/block:Audio}
-    {/block:Posts}
-</ol>
 
-<p id="footer">
-    {block:PreviousPage}
-    <a href="{PreviousPage}">&#171; Previous</a>
-    {/block:PreviousPage}
+    <div class="post-footer">
+        {block:RebloggedFrom}
+            <span class="reblog">{lang:Reblogged from ReblogParentName 2},</span>
+        {/block:RebloggedFrom}
 
-    {block:NextPage}
-    <a href="{NextPage}">Next &#187;</a>
-    {/block:NextPage}
+        {block:Date}
+            <a href="{Permalink}" class="permalink">{ShortMonth} {DayOfMonth} {Year} {12Hour}:{Minutes} {CapitalAmPm}</a>
+        {/block:Date}
 
-    <a href="/archive">Archive</a>
-</p>
-</body>
+        <!--
+        {block:IfShowNotes}
+            {block:NoteCount}
+                <a href="{Permalink}#notes-container" class="notes-link">{NoteCountWithLabel}</a>
+            {/block:NoteCount}
+        {/block:IfShowNotes}
 
-<script type="text/javascript" src="http://assets.tumblr.com/javascript/jquery-1.7.2.min.js"></script>
-<script type="text/javascript">
+        {block:HasTags}
+            <span class="tags">{lang:Tags}:
+            {block:Tags}
+                <a href="{TagURL}">{Tag}</a>
+            {/block:Tags}
+            </span>
+        {/block:HasTags}
+        -->
+    </div>
+
+    <!--
+    {block:Permalink}
+        {block:IfShowNotes}
+            {block:PostNotes}
+                <div id="notes-container">
+                    <h3>{lang:Notes}</h3>
+                    {PostNotes}
+                </div>
+            {block:PostNotes}
+        {/block:IfShowNotes}
+    {/block:Permalink}
+    -->
+
+    </li>
+{/block:Posts}
+
+<!-- END POSTS -->
+</ul>
+
+</div>
+
+<script src="http://assets.tumblr.com/javascript/jquery-1.7.2.min.js"></script>
+
+<script>
     var Tumblelog = {};
 
     // AJAX
@@ -145,11 +243,11 @@
         };
 
         this.postBody = (arguments[2] || "");
-        this.callbackFunction=callbackFunction;
-        this.url=url;
+        this.callbackFunction = callbackFunction;
+        this.url = url;
         this.request = this.getRequest();
 
-        if(this.request) {
+        if (this.request) {
             var req = this.request;
             req.onreadystatechange = this.bindFunction(this.stateChange, this);
 
@@ -166,9 +264,7 @@
         }
     });
 
-    // Infinite Scroll
     Tumblelog.Infinite = (function() {
-
         var _$window          = $(window);
         var _$posts           = $('#posts');
         var _trigger_post     = null;
@@ -263,32 +359,22 @@
                     disable_scroll();
                 }
             });
+        }
 
-            // Stats
-            {block:IfGoogleAnalyticsID}
-            if (typeof window._gaq != 'undefined') {
-                _gaq.push(['_trackPageview', _url]);
-            }
-            {/block:IfGoogleAnalyticsID}
-            }
+        return {
+            init: init
+        };
+    });
 
-            return {
-                init: init
-            };
-        });
-
-        $(function() {
-            {block:IndexPage}
-            if ( !($.browser.msie && (parseInt($.browser.version, 10) < 9) ) ) {
-                var InfiniteScroll = new Tumblelog.Infinite;
-                InfiniteScroll.init();
-            }
-            {/block:IndexPage}
-            });
+    $(function() {
+        {block:IndexPage}
+        if ( !($.browser.msie && (parseInt($.browser.version, 10) < 9) ) ) {
+            var InfiniteScroll = new Tumblelog.Infinite;
+            InfiniteScroll.init();
+        }
+        {/block:IndexPage}
+    });
 </script>
-
-
-</ol>
 
 </body>
 </html>
