@@ -14,6 +14,7 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="{RSS}"/>
     <link rel="stylesheet" href="http://static.tumblr.com/pki9kmq/Wttmg83dy/skeleton-1.2-base.css"/>
     <link rel="stylesheet" href="http://static.tumblr.com/pki9kmq/wERmg83e6/skeleton-1.2.css"/>
+    <link rel="stylesheet" href="http://static.tumblr.com/pki9kmq/AOLmhgcft/github.css">
 
     <style type="text/css">
         body {
@@ -113,20 +114,6 @@
         .btn-github .icon {
           opacity: 0.6;
           background: url(http://static.tumblr.com/pki9kmq/PDVmhg053/github.png) 0 0 no-repeat;
-        }
-
-        .post > pre {
-          background: rgba(0, 0, 0, 0.9);
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          padding: 10px;
-          font-size: 14px;
-          color: #b5e853;
-          border-radius: 2px;
-          -moz-border-radius: 2px;
-          -webkit-border-radius: 2px;
-          text-wrap: normal;
-          overflow: auto;
-          overflow-y: hidden;
         }
 
         /* Posts */
@@ -330,6 +317,7 @@
 </div>
 
 <script src="http://assets.tumblr.com/javascript/jquery-1.7.2.min.js"></script>
+<script src="http://static.tumblr.com/pki9kmq/7l0mhgcf6/highlight.pack.js"></script>
 
 <script>
 var Tumblelog = {};
@@ -464,6 +452,11 @@ Tumblelog.Infinite = (function() {
             $('#posts').append(new_posts_html);
             _posts_loaded = $new_posts.find('li.post').length;
 
+            // Highlight new code blocks
+            $new_posts.find('pre code').each(function(i, e) {
+                hljs.highlightBlock(e)
+            });
+
             if ((_posts_loaded > 0) && (_current_page < _total_pages)) {
                 set_trigger();
                 _is_loading = false;
@@ -489,6 +482,8 @@ $(function() {
 </script>
 
 <script>
+hljs.initHighlightingOnLoad();
+
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-22036475-1']);
 _gaq.push(['_setDomainName', 'bryan.io']);
