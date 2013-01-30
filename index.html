@@ -14,6 +14,7 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="{RSS}"/>
     <link rel="stylesheet" href="http://static.tumblr.com/pki9kmq/Wttmg83dy/skeleton-1.2-base.css"/>
     <link rel="stylesheet" href="http://static.tumblr.com/pki9kmq/wERmg83e6/skeleton-1.2.css"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.js"/>
 
     <style type="text/css">
         body {
@@ -21,20 +22,112 @@
             color: #EAEAEA;
         }
 
-        h1, h2, h3, h4, h5, h6 {
-            color: #b5e853;
+        header h1 {
+          font-size: 40px;
+          line-height: 1.5;
+          margin: 0 0 0 -40px;
+          font-weight: bold;
+          font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+          color: #b5e853;
+          text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
+                       0 0 5px rgba(181, 232, 83, 0.1),
+                       0 0 10px rgba(181, 232, 83, 0.1);
+          letter-spacing: -1px;
+          -webkit-font-smoothing: antialiased;
         }
 
         body, h1, h2, h3, h4, h5, h6 {
             font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace !important;
         }
 
-        header h1 {
-            text-align: center;
+        h1, h2, h3, h4, h5, h6 {
+          font-weight: normal;
+          color: #b5e853;
+          letter-spacing: -0.03em;
+          text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
+                       0 0 5px rgba(181, 232, 83, 0.1),
+                       0 0 10px rgba(181, 232, 83, 0.1);
+        }
+
+        header {
+          background: #151515 url(http://sundaykofax.github.com/baby-legs/images/bkg.png) 0 0;
+          padding: 20px;
+          border-radius: 0 0 4px 4px;
+          text-align: center;
+        }
+
+        header h2 {
+          font-size: 18px;
+          font-weight: 300;
+          color: #666;
+        }
+
+        header h1 a:link, header h1 a:visited, header h1 a:hover, header h1 a:active {
+          color: #b5e853;
+          text-decoration: none;
+        }
+
+        header h2 a:link, header h2 a:visited, header h2 a:hover, header h2 a:active {
+          color: #666;
         }
 
         a:link, a:visited, a:hover, a:active {
             color: #63c0f5;
+        }
+
+        a.btn:link, a.btn:visited, a.btn:hover, a.btn:active {
+            color: white;
+        }
+
+        .btn {
+          display: inline-block;
+          text-align: center;
+          margin: 0;
+          display: inline-block;
+          background: -webkit-linear-gradient(top, rgba(40, 40, 40, 0.3), rgba(35, 35, 35, 0.3) 50%, rgba(10, 10, 10, 0.3) 50%, rgba(0, 0, 0, 0.3));
+          padding: 8px 18px;
+          border-radius: 50px;
+          border: 2px solid rgba(0, 0, 0, 0.7);
+          border-bottom: 2px solid rgba(0, 0, 0, 0.7);
+          border-top: 2px solid rgba(0, 0, 0, 1);
+          color: rgba(255, 255, 255, 0.8);
+          font-family: Helvetica, Arial, sans-serif;
+          font-weight: bold;
+          font-size: 13px;
+          text-decoration: none;
+          text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.75);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .btn:hover {
+          background: -webkit-linear-gradient(top, rgba(40, 40, 40, 0.6), rgba(35, 35, 35, 0.6) 50%, rgba(10, 10, 10, 0.8) 50%, rgba(0, 0, 0, 0.8));
+        }
+
+        .btn .icon {
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          margin: 1px 8px 0 0;
+          float: left;
+        }
+
+        .btn-github .icon {
+          opacity: 0.6;
+          background: url("http://sundaykofax.github.com/baby-legs/images/blacktocat.png") 0 0 no-repeat;
+        }
+
+        .post > pre {
+          background: rgba(0, 0, 0, 0.9);
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          padding: 10px;
+          font-size: 14px;
+          color: #b5e853;
+          border-radius: 2px;
+          -moz-border-radius: 2px;
+          -webkit-border-radius: 2px;
+          text-wrap: normal;
+          overflow: auto;
+          overflow-y: hidden;
         }
 
         /* Posts */
@@ -52,7 +145,10 @@
             list-style: none;
         }
 
-        .post img {
+        .post img,
+        .post .tumblr_video_container,
+        .post .audio_player,
+        .post pre {
             display: block;
             max-width: 100%;
             margin: auto;
@@ -61,7 +157,14 @@
         .post h3,
         .post ul,
         .post ol,
-        .post img {
+        .post img,
+        .post .tumblr_video_container,
+        .post .audio_player,
+        .post pre,
+        .post iframe {
+            display: block;
+            max-width: 100%;
+            margin: auto;
             margin-bottom: 20px;
         }
 
@@ -95,7 +198,14 @@
 <div class="container">
 
 <header>
-    <h1>bryan.io</h1>
+    <h1><a href="http://bryan.io">bryan.io</a></h1>
+
+    {block:Description}
+      <h2>{Description}</h2>
+    {/block:Description}
+
+    <a href="https://github.com/irace" class="btn btn-github"><span class="icon"></span>GitHub</a>
+    <a href="https://twitter.com/irace" class="btn">Twitter</a>
 </header>
 
 <ul id="posts">
@@ -196,7 +306,6 @@
         -->
     </div>
 
-    <!--
     {block:Permalink}
         {block:IfShowNotes}
             {block:PostNotes}
@@ -207,8 +316,7 @@
             {block:PostNotes}
         {/block:IfShowNotes}
     {/block:Permalink}
-    -->
-
+    
     </li>
 {/block:Posts}
 
@@ -220,160 +328,177 @@
 <script src="http://assets.tumblr.com/javascript/jquery-1.7.2.min.js"></script>
 
 <script>
-    var Tumblelog = {};
+var Tumblelog = {};
 
-    // AJAX
-    Tumblelog.Ajax = (function(url, callbackFunction) {
-        this.bindFunction = function (caller, object) {
-            return function() {
-                return caller.apply(object, [object]);
-            };
+// AJAX
+Tumblelog.Ajax = (function(url, callbackFunction) {
+    this.bindFunction = function (caller, object) {
+        return function() {
+            return caller.apply(object, [object]);
         };
+    };
 
-        this.stateChange = function (object) {
-            if (this.request.readyState==4) this.callbackFunction(this.request.responseText);
-        };
+    this.stateChange = function (object) {
+        if (this.request.readyState==4) this.callbackFunction(this.request.responseText);
+    };
 
-        this.getRequest = function() {
-            if (window.ActiveXObject)
-                return new ActiveXObject('Microsoft.XMLHTTP');
-            else if (window.XMLHttpRequest)
-                return new XMLHttpRequest();
-            return false;
-        };
+    this.getRequest = function() {
+        if (window.ActiveXObject)
+            return new ActiveXObject('Microsoft.XMLHTTP');
+        else if (window.XMLHttpRequest)
+            return new XMLHttpRequest();
+        return false;
+    };
 
-        this.postBody = (arguments[2] || "");
-        this.callbackFunction = callbackFunction;
-        this.url = url;
-        this.request = this.getRequest();
+    this.postBody = (arguments[2] || "");
+    this.callbackFunction = callbackFunction;
+    this.url = url;
+    this.request = this.getRequest();
 
-        if (this.request) {
-            var req = this.request;
-            req.onreadystatechange = this.bindFunction(this.stateChange, this);
+    if (this.request) {
+        var req = this.request;
+        req.onreadystatechange = this.bindFunction(this.stateChange, this);
 
-            if (this.postBody!=="") {
-                req.open("POST", url, true);
-                req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-                req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-                req.setRequestHeader('Connection', 'close');
-            } else {
-                req.open("GET", url, true);
-            }
-
-            req.send(this.postBody);
-        }
-    });
-
-    Tumblelog.Infinite = (function() {
-        var _$window          = $(window);
-        var _$posts           = $('#posts');
-        var _trigger_post     = null;
-
-        var _current_page     = {CurrentPage};
-        var _total_pages      = {TotalPages};
-        var _url              = document.location.href;
-        var _infinite_timeout = null;
-        var _is_loading       = false;
-        var _posts_loaded     = false;
-
-        var _Ajax = Tumblelog.Ajax;
-
-        function init() {
-            set_trigger();
-            enable_scroll();
+        if (this.postBody!=="") {
+            req.open("POST", url, true);
+            req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+            req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            req.setRequestHeader('Connection', 'close');
+        } else {
+            req.open("GET", url, true);
         }
 
-        function set_trigger () {
-            var $all_posts = _$posts.find('li.post');
+        req.send(this.postBody);
+    }
+});
 
-            if (!_posts_loaded) {
-                _posts_loaded = $all_posts.length;
-            }
+Tumblelog.Infinite = (function() {
+    var _$window          = $(window);
+    var _$posts           = $('#posts');
+    var _trigger_post     = null;
 
-            if (_posts_loaded >= 4) {
-                _trigger_post = _$posts.find('li.post:eq(' + ($all_posts.length - 4) + ')').get(0);
-            } else if (_posts_loaded >= 3) {
-                _trigger_post = _$posts.find('li.post:eq(' + ($all_posts.length - 3) + ')').get(0);
-            } else {
-                _trigger_post = _$posts.find('li.post:last').get(0);
-            }
-        };
+    var _current_page     = {CurrentPage};
+    var _total_pages      = {TotalPages};
+    var _url              = document.location.href;
+    var _infinite_timeout = null;
+    var _is_loading       = false;
+    var _posts_loaded     = false;
 
-        function in_viewport (el) {
-            if (el == null) return;
-            var top = el.offsetTop;
-            var height = el.offsetHeight;
+    var _Ajax = Tumblelog.Ajax;
 
-            while (el.offsetParent) {
-                el = el.offsetParent;
-                top += el.offsetTop;
-            }
+    function init() {
+        set_trigger();
+        enable_scroll();
+    }
 
-            return (top < (window.pageYOffset + window.innerHeight));
-        };
+    function set_trigger () {
+        var $all_posts = _$posts.find('li.post');
 
-        function enable_scroll() {
-            $('#footer .pagination').hide();
-            _$window.scroll(function(){
-                clearTimeout(_infinite_timeout);
-                infinite_timeout = setTimeout(infinite_scroll, 100);
-            });
+        if (!_posts_loaded) {
+            _posts_loaded = $all_posts.length;
         }
 
-        function disable_scroll() {
+        if (_posts_loaded >= 4) {
+            _trigger_post = _$posts.find('li.post:eq(' + ($all_posts.length - 4) + ')').get(0);
+        } else if (_posts_loaded >= 3) {
+            _trigger_post = _$posts.find('li.post:eq(' + ($all_posts.length - 3) + ')').get(0);
+        } else {
+            _trigger_post = _$posts.find('li.post:last').get(0);
+        }
+    };
+
+    function in_viewport (el) {
+        if (el == null) return;
+        var top = el.offsetTop;
+        var height = el.offsetHeight;
+
+        while (el.offsetParent) {
+            el = el.offsetParent;
+            top += el.offsetTop;
+        }
+
+        return (top < (window.pageYOffset + window.innerHeight));
+    };
+
+    function enable_scroll() {
+        $('#footer .pagination').hide();
+        _$window.scroll(function(){
             clearTimeout(_infinite_timeout);
-            $(window).unbind('scroll');
+            infinite_timeout = setTimeout(infinite_scroll, 100);
+        });
+    }
+
+    function disable_scroll() {
+        clearTimeout(_infinite_timeout);
+        $(window).unbind('scroll');
+    }
+
+    function infinite_scroll() {
+        if (_is_loading) return;
+
+        if (in_viewport(_trigger_post)) {
+            load_more_posts(); // w00t
         }
+    };
 
-        function infinite_scroll() {
-            if (_is_loading) return;
+    function load_more_posts() {
+        if (_is_loading) return;
+        _is_loading = true;
 
-            if (in_viewport(_trigger_post)) {
-                load_more_posts(); // w00t
+        // Build URL
+        if (_url.charAt(_url.length - 1) != '/') _url += '/';
+        if (_current_page === 1) _url += 'page/1';
+        _current_page++;
+        _url = _url.replace('page/' + (_current_page - 1), 'page/' + _current_page);
+
+        // Fetch
+        _Ajax(_url, function(data) {
+            var new_posts_html = data.split('<!-- START' + ' POSTS -->')[1].split('<!-- END' + ' POSTS -->')[0];
+            var $new_posts = $('#posts', data);
+
+            // Insert posts and update counters
+            $('#posts').append(new_posts_html);
+            _posts_loaded = $new_posts.find('li.post').length;
+
+            if ((_posts_loaded > 0) && (_current_page < _total_pages)) {
+                set_trigger();
+                _is_loading = false;
+            } else {
+                disable_scroll();
             }
-        };
+        });
+    }
 
-        function load_more_posts() {
-            if (_is_loading) return;
-            _is_loading = true;
+    return {
+        init: init
+    };
+});
 
-            // Build URL
-            if (_url.charAt(_url.length - 1) != '/') _url += '/';
-            if (_current_page === 1) _url += 'page/1';
-            _current_page++;
-            _url = _url.replace('page/' + (_current_page - 1), 'page/' + _current_page);
+$(function() {
+    {block:IndexPage}
+    if ( !($.browser.msie && (parseInt($.browser.version, 10) < 9) ) ) {
+        var InfiniteScroll = new Tumblelog.Infinite;
+        InfiniteScroll.init();
+    }
+    {/block:IndexPage}
+});
+</script>
 
-            // Fetch
-            _Ajax(_url, function(data) {
-                var new_posts_html = data.split('<!-- START' + ' POSTS -->')[1].split('<!-- END' + ' POSTS -->')[0];
-                var $new_posts = $('#posts', data);
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-22036475-1']);
+_gaq.push(['_setDomainName', 'bryan.io']);
+_gaq.push(['_trackPageview']);
 
-                // Insert posts and update counters
-                $('#posts').append(new_posts_html);
-                _posts_loaded = $new_posts.find('li.post').length;
+(function() {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 
-                if ((_posts_loaded > 0) && (_current_page < _total_pages)) {
-                    set_trigger();
-                    _is_loading = false;
-                } else {
-                    disable_scroll();
-                }
-            });
-        }
-
-        return {
-            init: init
-        };
-    });
-
-    $(function() {
-        {block:IndexPage}
-        if ( !($.browser.msie && (parseInt($.browser.version, 10) < 9) ) ) {
-            var InfiniteScroll = new Tumblelog.Infinite;
-            InfiniteScroll.init();
-        }
-        {/block:IndexPage}
-    });
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+})();
 </script>
 
 </body>
