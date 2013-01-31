@@ -120,9 +120,13 @@
 
         #posts {
             max-width: 100%;
-            width: 730px;
             margin: 25px auto auto auto;
             font-size: 16px;
+        }
+
+        .post-content {
+            width: 700px;            
+            margin: auto;
         }
 
         .post {
@@ -205,70 +209,81 @@
 {block:Posts}
     {block:Regular}
         <li class="post regular">
-        {block:Title}<h3>{Title}</h3>{/block:Title}
-        {Body}
+            <div class="post-content">
+                {block:Title}<h3>{Title}</h3>{/block:Title}
+                {Body}
     {/block:Regular}
 
     {block:Quote}
         <li class="post quote">
-            <div class="quote-body">
-                <p class="words">&#0147;{Quote}&#0148;</p>
-                {block:Source}<p class="source">&mdash; {Source}</p>{/block:Source}
-            </div>
+            <div class="post-content">
+                <div class="quote-body">
+                    <p class="words">&#0147;{Quote}&#0148;</p>
+                    {block:Source}<p class="source">&mdash; {Source}</p>{/block:Source}
+                </div>
     {/block:Quote}
 
     {block:Link}
         <li class="post link">
-            <h3><a href="{URL}" {Target}>{Name}</a></h3>
+            <div class="post-content">
+                <h3><a href="{URL}" {Target}>{Name}</a></h3>
 
-            <p class="link-body">
-                {block:Description}{Description}{/block:Description}
-            </p>
+                <p class="link-body">
+                    {block:Description}{Description}{/block:Description}
+                </p>
     {/block:Link}
 
     {block:Conversation}
         <li class="post conversation">
             {block:Title}<h3>{Title}</h3>{/block:Title}
-            <ul>
-                {block:Lines}
-                <li>
-                    {block:Label}<span class="person">{Label}</span>{/block:Label}
-                    <span class="line">{Line}</span>
-                </li>
-                {/block:Lines}
-            </ul>
+            <div class="post-content">
+                <ul>
+                    {block:Lines}
+                    <li>
+                        {block:Label}<span class="person">{Label}</span>{/block:Label}
+                        <span class="line">{Line}</span>
+                    </li>
+                    {/block:Lines}
+                </ul>
     {/block:Conversation}
 
     {block:Photo}
         <li class="post photo">
-            {LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}"/>{LinkCloseTag}
-            {block:Caption}
-                <div class="caption">{Caption}</div>
-            {/block:Caption}
+            {LinkOpenTag}<img src="{PhotoURL-1280}" alt="{PhotoAlt}"/>{LinkCloseTag}
+            <div class="post-content">
+                {block:Caption}
+                    <div class="caption">{Caption}</div>
+                {/block:Caption}
     {/block:Photo}
 
     {block:Photoset}
         <li class="post photoset-post">
-            {Photoset-500}
-            {block:Caption}
-                <div class="caption">{Caption}</div>
-            {/block:Caption}
+            {Photoset-700}
+
+            <div class="post-content">
+                {block:Caption}
+                    <div class="caption">{Caption}</div>
+                {/block:Caption}
     {/block:Photoset}
 
     {block:Video}
         <li class="post video">
-            {Video-500}
-            {block:Caption}
-                <div class="caption">{Caption}</div>
-            {/block:Caption}
+            {Video-700}
+
+            <div class="post-content">
+                {block:Caption}
+                    <div class="caption">{Caption}</div>
+                {/block:Caption}
     {/block:Video}
 
     {block:Audio}
         <li class="post audio">
-            {AudioPlayerBlack}
-            {block:Caption}
-                <div class="caption">{Caption}</div>
-            {/block:Caption}
+            <div class="post-content">
+                {AudioPlayerBlack}
+
+                {block:Caption}
+                    <div class="caption">{Caption}</div>
+                {/block:Caption}
     {/block:Audio}
 
     <div class="post-footer">
@@ -307,6 +322,8 @@
             {block:PostNotes}
         {/block:IfShowNotes}
     {/block:Permalink}
+
+    </div>
     
     </li>
 {/block:Posts}
