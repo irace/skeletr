@@ -131,7 +131,7 @@
 
         .post {
             position: relative;
-            margin: 40px 0 20px 0;
+            margin-bottom: 75px;
             list-style: none;
         }
 
@@ -155,11 +155,21 @@
             display: block;
             max-width: 100%;
             margin: auto;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        .post .reblog img {
+            display: inline;
+            margin: 0 0 -6px 0;
         }
 
         .post .words {
             font-size: x-large;
+        }
+
+        .post .gist {
+            width: 150%;
+            margin-left: -25%;
         }
 
         .post-footer {
@@ -288,7 +298,7 @@
 
     <div class="post-footer">
         {block:RebloggedFrom}
-            <span class="reblog">{lang:Reblogged from ReblogParentName 2},</span>
+            <span class="reblog"><img src="http://static.tumblr.com/pki9kmq/KTlmhi3qm/reblog.png"> {ReblogParentName},</span>
         {/block:RebloggedFrom}
 
         {block:Date}
