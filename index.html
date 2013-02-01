@@ -124,38 +124,57 @@
             font-size: 16px;
         }
 
-        .post-content {
-            width: 700px;            
-            margin: auto;
-        }
-
         .post {
             position: relative;
             margin-bottom: 75px;
             list-style: none;
         }
 
-        .post img,
-        .post .tumblr_video_container,
-        .post .audio_player,
-        .post pre {
-            display: block;
-            max-width: 100%;
+        .post .post-content {
+            width: 700px;            
             margin: auto;
         }
 
+        .post img,
+        .post .tumblr_video_container,
+        .post .audio_player,
+        .post pre,
+        .post iframe,
         .post h3,
         .post ul,
-        .post ol,
+        .post ol {
+            margin-bottom: 20px;
+        }
+
         .post img,
         .post .tumblr_video_container,
         .post .audio_player,
         .post pre,
         .post iframe {
             display: block;
-            max-width: 100%;
             margin: auto;
-            margin-bottom: 40px;
+        }
+
+        .post img,
+        .post .tumblr_video_container,
+        .post .audio_player {
+            max-width: 100%;
+        }
+
+        .post pre,
+        .post .gist {
+            width: 150%;
+            margin-left: -25%;
+        }
+
+        .post ul li:before {
+          content: ">>";
+          font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+          font-size: 13px;
+          color: #b5e853;
+          margin-left: -37px;
+          margin-right: 21px;
+          line-height: 16px;
         }
 
         .post .reblog img {
@@ -167,13 +186,14 @@
             font-size: x-large;
         }
 
-        .post .gist {
-            width: 150%;
-            margin-left: -25%;
-        }
-
         .post-footer {
             text-align: right;
+        }
+
+        /* highlight.js overrides */
+
+        pre code {
+            padding: 1em;
         }
 
         /* Skeleton overrides */
@@ -245,8 +265,9 @@
 
     {block:Conversation}
         <li class="post conversation">
-            {block:Title}<h3>{Title}</h3>{/block:Title}
             <div class="post-content">
+                {block:Title}<h3>{Title}</h3>{/block:Title}
+                
                 <ul>
                     {block:Lines}
                     <li>
