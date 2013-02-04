@@ -138,6 +138,7 @@
         .post img,
         .post .tumblr_video_container,
         .post .audio_player,
+        .post .words,
         .post pre,
         .post iframe,
         .post h3,
@@ -185,6 +186,14 @@
 
         .post .words {
             font-size: x-large;
+        }
+
+        .post .words::before {
+            content: '“';
+        }
+
+        .post .words::after {
+            content: '”';
         }
 
         .post-footer {
@@ -249,7 +258,7 @@
         <li class="post quote">
             <div class="post-content">
                 <div class="quote-body">
-                    <p class="words">&#0147;{Quote}&#0148;</p>
+                    <div class="words">{Quote}</div>
                     {block:Source}<p class="source">&mdash; {Source}</p>{/block:Source}
                 </div>
     {/block:Quote}
