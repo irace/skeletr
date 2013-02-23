@@ -71,8 +71,16 @@
           color: #666;
         }
 
-        a:link, a:visited, a:hover, a:active {
+        .post a:link, a:visited, a:hover, a:active {
             color: #63c0f5;
+            opacity: 1;
+            transition: opacity .1s ease-in-out;
+            -moz-transition: opacity .1s ease-in-out;
+            -webkit-transition: opacity .1s ease-in-out;
+        }
+
+        .post a:hover {
+            opacity: 0.5;
         }
 
         a.btn:link, a.btn:visited, a.btn:hover, a.btn:active {
@@ -246,6 +254,7 @@
 
     <a href="https://github.com/irace" class="btn btn-github"><span class="icon"></span>GitHub</a>
     <a href="https://twitter.com/irace" class="btn">Twitter</a>
+    <a href="http://irace.me" class="btn">Everything else</a>
 </header>
 
 <ul id="posts">
